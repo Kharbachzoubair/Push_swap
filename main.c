@@ -3,180 +3,135 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Zoubair Kharbach <marvin@student.42.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 11:30:51 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/01/27 13:26:17 by zkharbac         ###   ########.fr       */
+/*   Created: 2025/01/30 12:58:15 by Zoubair           #+#    #+#             */
+/*   Updated: 2025/01/30 12:58:15 by Zoubair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdio.h>
 
-// Define the linked list structure
-typedef struct s_node {
-    int value;
-    struct s_node *next;
-} t_node;
-
-// Function to create a new node
-t_node *create_node(int value) {
-    t_node *new_node = (t_node *)malloc(sizeof(t_node));
-    if (!new_node)
-        return NULL;
-    new_node->value = value;
-    new_node->next = NULL;
-    return new_node;
+int ft_strlen(char *s)
+{
+    int i = 0;
+    while (s[i])
+        i++;
+    return i;
 }
 
-// Function to add a node to the end of the list
-void add_node(t_node **head, int value) {
-    t_node *new_node = create_node(value);
-    if (!new_node) {
-        printf("Error: Memory allocation failed.\n");
-        exit(1);
+int count_words(char *s)
+{
+    int i = 0, word = 0, count = 0;
+    while (s[i])
+    {
+        if (s[i] == ' ')
+            word = 0;
+        else if (word == 0)
+        {
+            count++;
+            word = 1;
+        }
+        i++;
     }
-    if (!*head) {
-        *head = new_node;
-    } else {
-        t_node *temp = *head;
-        while (temp->next)
-            temp = temp->next;
-        temp->next = new_node;
-    }
+    return count;
 }
 
-// Function to print the linked list
-void print_list(t_node *head) {
-    t_node *temp = head;
-    while (temp) {
-        printf("%d\n", temp->value);
-        temp = temp->next;
-    }
-}
+char *join_arg(int argc, char **argv)
+{
+    int i = 1, j, k = 0, len = 0;
+    char *join_d;
 
-// Function to free the linked list
-void free_list(t_node *head) {
-    t_node *temp;
-    while (head) {
-        temp = head;
-        head = head->next;
-        free(temp);
-    }
-}
+    for (i = 1; i < argc; i++)
+        len += ft_strlen(argv[i]) + 1;
 
-// Function to check if a string is a valid number
-int is_valid_number(char *str) {
-    if (*str == '+' || *str == '-')
-        str++;
-    if (!*str) // If there's no digit after + or -
-        return 0;
-    while (*str) {
-        if (!isdigit(*str))
-            return 0;
-        str++;
-    }
-    return 1;
-}
-
-// Custom atoi function
-int ft_atoi(char *str) {
-    int sign = 1;
-    int result = 0;
-
-    if (*str == '+' || *str == '-') {
-        if (*str == '-')
-            sign = -1;
-        str++;
-    }
-    while (*str && isdigit(*str)) {
-        result = result * 10 + (*str - '0');
-        str++;
-    }
-    return result * sign;
-}
-
-// Custom split function
-char **ft_split(char const *s, char c) {
-    char **result;
-    int i = 0, j, k, word_count = 0;
-
-    if (!s)
+    join_d = malloc(len + 1);
+    if (!join_d)
         return NULL;
 
-    // Count words
-    for (i = 0; s[i]; i++)
-        if ((i == 0 || s[i - 1] == c) && s[i] != c)
-            word_count++;
+    i = 1;
+    while (i < argc)
+    {
+        j = 0;
+        while (argv[i][j])
+            join_d[k++] = argv[i][j++];
+        if (i < argc - 1)
+            join_d[k++] = ' ';
+        i++;
+    }
+    join_d[k] = '\0';
+    return join_d;
+}
 
-    // Allocate memory for the result
-    result = (char **)malloc((word_count + 1) * sizeof(char *));
+char **ft_split(char const *s)
+{
+    int i = 0, k = 0, j, words = count_words((char *)s);
+    char **result = malloc((words + 1) * sizeof(char *));
     if (!result)
         return NULL;
 
-    // Split the string
-    i = 0, k = 0;
-    while (s[i]) {
-        while (s[i] == c)
+    while (s[i])
+    {
+        while (s[i] == ' ')
             i++;
-        if (s[i]) {
-            j = i;
-            while (s[j] && s[j] != c)
-                j++;
-            result[k] = (char *)malloc(j - i + 1);
-            if (!result[k])
-                return NULL;
-            for (int x = 0; x < j - i; x++)
-                result[k][x] = s[i + x];
-            result[k][j - i] = '\0';
-            k++;
-            i = j;
-        }
+        if (!s[i])
+            break;
+
+        j = i;
+        while (s[j] && s[j] != ' ')
+            j++;
+
+        result[k] = malloc((j - i + 1) * sizeof(char));
+        if (!result[k])
+            return NULL;
+
+        int m = 0;
+        while (i < j)
+            result[k][m++] = s[i++];
+        result[k][m] = '\0';
+        k++;
     }
     result[k] = NULL;
     return result;
 }
 
-// Function to parse arguments
-void parse_arguments(char *arg, t_node **list) {
-    char **numbers = ft_split(arg, ' ');
-    int i = 0;
-
-    if (!numbers) {
-        printf("Error: Memory allocation failed during split.\n");
-        exit(1);
-    }
-
-    while (numbers[i]) {
-        if (!is_valid_number(numbers[i])) {
-            printf("Error: Invalid argument '%s'\n", numbers[i]);
-            free_list(*list);
-            exit(1);
-        }
-        add_node(list, ft_atoi(numbers[i]));
-        free(numbers[i]);
-        i++;
-    }
-    free(numbers);
+void free_split(char **split)
+{
+    for (int i = 0; split[i]; i++)
+        free(split[i]);
+    free(split);
 }
 
-// Main function
-int main(int argc, char **argv) {
-    t_node *list = NULL;
-
-    if (argc < 2) {
-        printf("Error: No arguments provided.\n");
+int main(int argc, char **argv)
+{
+    if (argc < 2)
+    {
+        printf("Error: No input provided\n");
         return 1;
     }
 
-    for (int i = 1; i < argc; i++) {
-        parse_arguments(argv[i], &list);
+    char *joined = join_arg(argc, argv);
+    if (!joined)
+    {
+        printf("Memory allocation failed\n");
+        return 1;
     }
 
-    print_list(list);
-    free_list(list);
+    char **split = ft_split(joined);
+    free(joined);
+
+    if (!split)
+    {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    printf("Split numbers:\n");
+    for (int i = 0; split[i]; i++)
+        printf("%s\n", split[i]);
+
+    free_split(split);
     return 0;
 }
-
