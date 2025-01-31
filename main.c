@@ -104,7 +104,22 @@ void free_split(char **split)
     free(split);
 }
 
-int main(int argc, char **argv)
+int ifnumber(char *s)
+{
+    int i;
+
+    i = 0;
+    if(!s[i] || !s[0])
+        return 0;
+    if((s[i]=='-' || s[i]=='+') && s[i+1])
+        i++;
+    while(s[i])
+        if(s[i]<'0' && s[i]>'9')
+            return 0;
+        i++;  
+    return 1;
+}
+int main(int argc , char **argv)
 {
     if (argc < 2)
     {
@@ -133,5 +148,5 @@ int main(int argc, char **argv)
         printf("%s\n", split[i]);
 
     free_split(split);
-    return 0;
-}
+    // return 0;
+  
