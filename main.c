@@ -10,9 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+typedef struct s_stack
+{
+    int value;
+    struct s_stack *next;
+} t_stack;
 
 int ft_strlen(char *s)
 {
@@ -64,6 +72,26 @@ char *join_arg(int argc, char **argv)
     join_d[k] = '\0';
     return join_d;
 }
+int validate_numbers(char **numbers)
+{
+    int i = 0;
+
+    while (numbers[i])
+    {
+        if (!is_valid_number(numbers[i]) || !is_within_int_range(numbers[i]))
+        {
+            write(2, "Error\n", 6);
+            return (0);
+        }
+        i++;
+    }
+    if (has_duplicates(numbers))
+    {
+        write(2, "Error\n", 6);
+        return (0);
+    }
+    return (1);
+}
 
 char **ft_split(char const *s)
 {
@@ -102,6 +130,33 @@ void free_split(char **split)
     for (int i = 0; split[i]; i++)
         free(split[i]);
     free(split);
+}
+
+int is_within_int_range(char *str)
+{
+    long num = ft_atol(str);  // Convert to long
+
+    if (num < INT_MIN || num > INT_MAX)
+        return (0);
+    return (1);
+}
+
+int has_duplicates(char **numbers)
+{
+    int i = 0, j;
+
+    while (numbers[i])
+    {
+        j = i + 1;
+        while (numbers[j])
+        {
+            if (ft_atoi(numbers[i]) == ft_atoi(numbers[j]))  
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
 
 int ifnumber(char *s)
@@ -148,5 +203,6 @@ int main(int argc , char **argv)
         printf("%s\n", split[i]);
 
     free_split(split);
-    // return 0;
+    return 0;
+}
   
