@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 12:41:40 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/01 11:56:23 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:18:16 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ char **ft_split(char  *s)
 
 void free_split(char **split)
 {
-    for (int i = 0; split[i]; i++)
-        free(split[i]);
+	int i =0;
+    
+	while(split[i])
+	{
+		free(split[i]);
+		i++;
+	}
     free(split);
 }
