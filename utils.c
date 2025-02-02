@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:53:45 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/01 12:11:48 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:05:14 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int count_words(char *s)
     }
     return count;
 }
-int	ft_atoi(const *str)
+
+int	ft_atoi(char *str)
 {
 	int					i;
 	int					sign;
@@ -68,9 +69,10 @@ char *join_arg(int argc, char **argv)
     int i = 1, j, k = 0, len = 0;
     char *join_d;
 
-    while(i < argc)
+    
+    while (i < argc)
     {
-        len+=ft_strlen(argv[i] + 1);
+        len += ft_strlen(argv[i]);
         i++;
     }
 
@@ -78,6 +80,7 @@ char *join_arg(int argc, char **argv)
     if (!join_d)
         return NULL;
 
+    
     i = 1;
     while (i < argc)
     {

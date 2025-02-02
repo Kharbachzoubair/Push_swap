@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:41:55 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/01 13:07:15 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:54:49 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@ int     ft_strlen(char *s);
 int     count_words(char *s);
 char   *join_arg(int argc, char **argv);
 int     validate_numbers(char **numbers);
-char  **ft_split(char const *s);
+char  **ft_split(char  *s);
 void    free_split(char **split);
 
+int     is_valid_number(char *str);
 int     is_within_int_range(char *str);
 int     has_duplicates(char **numbers);
 int     ifnumber(char *s);
 
-
-long    ft_atol(char *str);
-int     ft_atoi(const char *str);
+int     ft_atoi( char *str);
 
 #endif

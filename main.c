@@ -12,6 +12,10 @@
 
 #include "push_swap.h"
 
+
+/* ===================== */
+/*         MAIN         */
+/* ===================== */
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -19,33 +23,38 @@ int main(int argc, char **argv)
         printf("Error: No input provided\n");
         return 1;
     }
-
+    
     char *joined = join_arg(argc, argv);
     if (!joined)
     {
         printf("Memory allocation failed\n");
         return 1;
     }
-
-    char **split = ft_split(joined);
+    
+    char **numbers = ft_split(joined);
     free(joined);
-
-    if (!split)
+    
+    if (!numbers)
     {
         printf("Memory allocation failed\n");
         return 1;
     }
-
-    if (!validate_numbers(split))
+    
+    if (!validate_numbers(numbers))
     {
-        free_split(split);
+        free_split(numbers);
         return 1;
     }
-
+    
     printf("Valid numbers:\n");
-    for (int i = 0; split[i]; i++)
-        printf("%s\n", split[i]);
-
-    free_split(split);
+    
+    int i = 0;
+    while (numbers[i])
+    {
+        printf("%d\n", ft_atoi(numbers[i])); 
+        i++;
+    }
+    
+    free_split(numbers);
     return 0;
 }
