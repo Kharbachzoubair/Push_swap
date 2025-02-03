@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c ft_split.c validation.c utils.c
+SRC = main.c ft_split.c validation.c utils.c stack.c
 OBJ = $(SRC:.c=.o)
 NAME = push_swap
 

@@ -54,7 +54,15 @@ int main(int argc, char **argv)
         printf("%d\n", ft_atoi(numbers[i])); 
         i++;
     }
-    
+    t_stack *stack_a=build_stack(numbers);
     free_split(numbers);
+    if(!stack_a)
+    {
+        printf("Error building stack\n");
+        return 1;
+    }
+    printf("\nStack A:\n");
+    print_stack(stack_a);
+    free_stack(stack_a);
     return 0;
 }

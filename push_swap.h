@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:41:55 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/01 14:54:49 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/02 16:49:20 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int     has_duplicates(char **numbers);
 int     ifnumber(char *s);
 
 int     ft_atoi( char *str);
+t_stack *create_node(int value);
+t_stack *build_stack(char **numbers);
+void print_stack(t_stack *stack);
+void free_stack(t_stack *stack);
 
 #endif
