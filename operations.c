@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 22:57:36 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/05 22:57:36 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:45:51 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ void swap(t_stack **stack)
 {
     if (!*stack || !(*stack)->next)
         return;
-    
+
+    // Perform the swap
     t_stack *first = (*stack);
     t_stack *second = (*stack)->next;
     first->next = second->next;
     second->next = first;
     *stack = second;
+
+    // Debug print after swap
+    printf("Stack after swap:\n");
+    print_stack(*stack);
 }
+
 
 void sa(t_stack **stack_a)
 {

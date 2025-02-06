@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:21:33 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/02 17:02:29 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:47:36 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,27 @@ t_stack *build_stack(char **numbers)
     t_stack *head = NULL;
     t_stack *tail = NULL;
     int i = 0;
+
     while (numbers[i])
     {
         int num = ft_atoi(numbers[i]);
         t_stack *new_node = create_node(num);
+
         if (!new_node)
         {
             free_stack(head);
             return NULL;
         }
+
         if (!head)
             head = new_node;
         else
             tail->next = new_node;
+
         tail = new_node;
         i++;
     }
+
     return head;
 }
 
@@ -64,4 +69,14 @@ void free_stack(t_stack *stack)
         stack = stack->next;
         free(tmp);
     }
+}
+int stack_size(t_stack *stack)
+{
+    int count=0;
+    while(stack)
+    {
+       stack=stack->next;
+        count++;
+    }
+    return count;
 }
