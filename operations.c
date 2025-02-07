@@ -12,23 +12,25 @@
 
 #include "push_swap.h"
 
+int move_count = 0; 
+
+
+
 void swap(t_stack **stack)
 {
     if (!*stack || !(*stack)->next)
         return;
 
-    // Perform the swap
     t_stack *first = (*stack);
     t_stack *second = (*stack)->next;
     first->next = second->next;
     second->next = first;
     *stack = second;
 
-    // Debug print after swap
+    move_count++;
     printf("Stack after swap:\n");
     print_stack(*stack);
 }
-
 
 void sa(t_stack **stack_a)
 {
@@ -57,6 +59,8 @@ void push(t_stack **from, t_stack **to)
     (*from) = (*from)->next;
     tmp->next = (*to);
     (*to) = tmp;
+
+    move_count++;
 }
 
 void pa(t_stack **stack_a, t_stack **stack_b)
@@ -85,6 +89,8 @@ void rotate(t_stack **stack)
     
     last->next = tmp;
     tmp->next = NULL;
+
+    move_count++;
 }
 
 void ra(t_stack **stack_a)
@@ -123,6 +129,8 @@ void reverse_rotate(t_stack **stack)
     prev->next = NULL;
     last->next = (*stack);
     (*stack) = last;
+
+    move_count++;
 }
 
 void rra(t_stack **stack_a)

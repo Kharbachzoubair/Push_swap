@@ -13,8 +13,6 @@
 #include "push_swap.h"
 
 // Function to calculate the size of the stack
-
-
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -46,6 +44,7 @@ int main(int argc, char **argv)
     }
     
     t_stack *stack_a = build_stack(numbers);
+    t_stack *stack_b = NULL;
     free_split(numbers);
     if (!stack_a)
     {
@@ -60,12 +59,23 @@ int main(int argc, char **argv)
     int size = stack_size(stack_a);
     
     if (size == 2)
-        swap(&stack_a);  // Swap for stack size 2
-    else if (size == 3)
-        sort3(&stack_a);  // Sort for stack size 3
-    else if (size > 3)
     {
-        // Implement logic for sorting larger stacks (this is your job to define the sorting algorithm)
+        sa(&stack_a); // Swap for stack size 2
+    }
+    else if (size == 3)
+    {
+        sort3(&stack_a);
+    }
+    else if (size == 4)
+    {
+        sort4(&stack_a, &stack_b);
+    }
+    else if (size == 5)
+    {
+        sort5(&stack_a, &stack_b);
+    }
+    else if (size > 5)
+    {
         printf("Sorting logic for larger stacks should be implemented here.\n");
     }
 
@@ -75,4 +85,3 @@ int main(int argc, char **argv)
     
     return 0;
 }
-
