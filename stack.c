@@ -18,6 +18,7 @@ t_stack *create_node(int value)
     if (!node)
         return NULL;
     node->value = value;
+    node->index = -1;  // Initialize index
     node->next = NULL;
     return node;
 }
@@ -48,14 +49,42 @@ t_stack *build_stack(char **numbers)
         i++;
     }
 
+    index_stack(head);  // Assign indexes after building the stack
     return head;
+}
+
+void index_stack(t_stack *stack)
+{
+    t_stack *current;
+    t_stack *smallest;
+    int index = 0;
+    int size = stack_size(stack);
+
+    while (index < size)
+    {
+        smallest = NULL;
+        current = stack;
+
+        while (current)
+        {
+            if (current->index == -1) // Only process unindexed numbers
+            {
+                if (!smallest || current->value < smallest->value)
+                    smallest = current;
+            }
+            current = current->next;
+        }
+
+        if (smallest)
+            smallest->index = index++; // Assign index
+    }
 }
 
 void print_stack(t_stack *stack)
 {
     while (stack)
     {
-        printf("%d\n", stack->value);
+        printf("Value: %d | Index: %d\n", stack->value, stack->index);
         stack = stack->next;
     }
 }
@@ -70,12 +99,13 @@ void free_stack(t_stack *stack)
         free(tmp);
     }
 }
+
 int stack_size(t_stack *stack)
 {
-    int count=0;
-    while(stack)
+    int count = 0;
+    while (stack)
     {
-       stack=stack->next;
+        stack = stack->next;
         count++;
     }
     return count;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-// Function to calculate the size of the stack
+
 int main(int argc, char **argv)
 {
     if (argc < 2)

@@ -23,6 +23,7 @@
 typedef struct s_stack
 {
     int value;
+    int index;
     struct s_stack *next;
 } t_stack;
 
@@ -71,4 +72,6 @@ int     find_min(t_stack *stack);  // Corrected to take t_stack * instead of t_s
 int     find_max(t_stack *stack);  // Corrected to take t_stack * instead of t_stack **
 void    move_to_top(t_stack **stack, int value);  // Corrected to take t_stack * for stack
 void sort4(t_stack **stack_a,t_stack **stack_b);
+void index_stack(t_stack *stack); 
+t_stack *find_smallest_unindexed(t_stack *stack);
 #endif
