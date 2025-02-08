@@ -19,31 +19,49 @@ int determine_chunk_size(int size)
     else
         return 30;
 }
-
-// Push elements from stack_a to stack_b in chunks
 void range_sort(t_stack **stack_a, t_stack **stack_b)
 {
     int size = stack_size(*stack_a);
     int chunk_size = determine_chunk_size(size);
     int start_range = 0;
     int end_range = chunk_size - 1;
+    int total_pushed = 0;
 
-    while (*stack_a)
+    while (total_pushed < size) // Ensure all elements are pushed
     {
-        if ((*stack_a)->index >= start_range && (*stack_a)->index <= end_range)
+        int rotated = 0;
+        int found = 0;
+        int current_size = stack_size(*stack_a); // Update size dynamically
+
+        for (int i = 0; i < current_size; i++)
         {
-            pb(stack_a, stack_b);
-            if ((*stack_b)->index <= start_range + (chunk_size / 2))
-                rb(stack_b);
-            start_range++;
-            end_range++;
+            if ((*stack_a)->index >= start_range && (*stack_a)->index <= end_range)
+            {
+                pb(stack_a, stack_b);
+                total_pushed++;
+
+                // If the pushed element is in the lower half, rotate stack_b
+                if (*stack_b && (*stack_b)->index <= start_range + (chunk_size / 2))
+                    rb(stack_b);
+
+                found = 1;
+            }
+            else
+            {
+                ra(stack_a);
+                rotated++;
+            }
         }
-        else
-        {
-            ra(stack_a);
-        }
+
+        if (!found) // Prevent infinite loop if no numbers fit the range
+            break;
+
+        start_range += chunk_size;
+        end_range += chunk_size;
     }
 }
+
+
 
 // Find the position of the max index in stack_b
 int find_max_index_position(t_stack *stack)

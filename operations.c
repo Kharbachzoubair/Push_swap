@@ -14,8 +14,6 @@
 
 int move_count = 0; 
 
-
-
 void swap(t_stack **stack)
 {
     if (!*stack || !(*stack)->next)
@@ -28,8 +26,6 @@ void swap(t_stack **stack)
     *stack = second;
 
     move_count++;
-    printf("Stack after swap:\n");
-    print_stack(*stack);
 }
 
 void sa(t_stack **stack_a)
@@ -55,6 +51,7 @@ void push(t_stack **from, t_stack **to)
 {
     if (!(*from))
         return;
+
     t_stack *tmp = (*from);
     (*from) = (*from)->next;
     tmp->next = (*to);
@@ -82,13 +79,13 @@ void rotate(t_stack **stack)
     
     t_stack *tmp = (*stack);
     (*stack) = (*stack)->next;
-    t_stack *last = (*stack);
+    tmp->next = NULL; // Fix: Detach the old head
     
+    t_stack *last = (*stack);
     while (last->next)
         last = last->next;
     
-    last->next = tmp;
-    tmp->next = NULL;
+    last->next = tmp; // Reattach old head to last
 
     move_count++;
 }
@@ -125,9 +122,12 @@ void reverse_rotate(t_stack **stack)
         prev = last;
         last = last->next;
     }
+
+    if (!prev) // Fix: If there's only one element, return immediately
+        return;
     
-    prev->next = NULL;
-    last->next = (*stack);
+    prev->next = NULL; // Disconnect last node
+    last->next = (*stack); // Make last node the new head
     (*stack) = last;
 
     move_count++;
