@@ -55,8 +55,7 @@ int main(int argc, char **argv)
     printf("\nStack A before sorting:\n");
     print_stack(stack_a);
 
-    // Step 1: Index the stack
-    index_stack(stack_a);
+   
 
     // Step 2: Get size and determine sorting method
     int size = stack_size(stack_a);

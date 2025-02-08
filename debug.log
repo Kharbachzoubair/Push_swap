@@ -1,0 +1,9 @@
+sa
+ra
+Assigning index 0 to value 1
+Assigning index 1 to value 2
+Assigning index 2 to value 3
+Stack after swap:
+Value: 3 | Index: 2
+Value: 1 | Index: 0
+Value: 2 | Index: 1
