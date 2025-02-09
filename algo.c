@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:30:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/08 01:30:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/09 15:23:30 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int determine_chunk_size(int size)
 {
     if (size <= 100)
-        return 15;
+        return 17;
     else
         return 30;
 }
@@ -31,7 +31,7 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
     {
         int current_size = stack_size(*stack_a); // Update size dynamically
         int found = 0;
-
+        
         for (int i = 0; i < current_size; i++)
         {
             if ((*stack_a)->index >= start_range && (*stack_a)->index <= end_range)
@@ -39,7 +39,7 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
                 pb(stack_a, stack_b);
                 total_pushed++;
 
-                // If the pushed element is in the lower half, rotate stack_b
+                // Rotate stack_b based on the element's position
                 if (*stack_b && (*stack_b)->index <= start_range + (chunk_size / 2))
                     rb(stack_b);
 
@@ -51,13 +51,15 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
             }
         }
 
-        if (!found) // Prevent infinite loop if no numbers fit the range
+        // If no elements were pushed, break the loop
+        if (!found) 
             break;
 
         start_range += chunk_size;
         end_range += chunk_size;
     }
 }
+
 
 
 

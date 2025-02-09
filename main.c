@@ -76,6 +76,7 @@ int main(int argc, char **argv)
     print_stack(stack_a);
     
     free_stack(stack_a);
+    printf("Total moves: %d\n", move_count);
     
     return 0;
 }

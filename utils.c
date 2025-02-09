@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:53:45 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/02 13:07:57 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/09 12:15:00 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,37 @@ int	ft_atoi(char *str)
 }
 char *join_arg(int argc, char **argv)
 {
-    int i = 1, j, k = 0, len = 0;
+    int i = 1, len = 0, k = 0;
     char *join_d;
-
-    
+    int j;
+    // Calculate the total length, including spaces between words
     while (i < argc)
     {
         len += ft_strlen(argv[i]);
         i++;
+        if (i < argc) // Add space for each space between arguments
+            len++;
     }
 
+    // Allocate memory for the combined string (including null terminator)
     join_d = malloc(len + 1);
     if (!join_d)
         return NULL;
 
-    
     i = 1;
     while (i < argc)
     {
+        // Copy each argument to the joined string
         j = 0;
         while (argv[i][j])
             join_d[k++] = argv[i][j++];
+
+        // Add space between arguments, but not after the last one
         if (i < argc - 1)
             join_d[k++] = ' ';
+        
         i++;
     }
-    join_d[k] = '\0';
+    join_d[k] = '\0';  // Null-terminate the string
     return join_d;
 }

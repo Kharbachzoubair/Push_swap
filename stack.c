@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:21:33 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/06 15:47:36 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:10:40 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,11 @@ void index_stack(t_stack *stack)
 
 void print_stack(t_stack *stack)
 {
-    while (stack)
+    t_stack *current = stack;
+    while (current)
     {
-        printf("Value: %d | Index: %d\n", stack->value, stack->index);
-        stack = stack->next;
+        printf("Value: %d | Index: %d\n", current->value, current->index);
+        current = current->next;
     }
 }
 

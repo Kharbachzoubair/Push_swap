@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:41:55 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:23 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/09 10:55:22 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int determine_chunk_size(int size);
 void push_chunks(t_stack **stack_a, t_stack **stack_b);
 void range_sort(t_stack **stack_a, t_stack **stack_b);
 void sort_stack_b(t_stack **stack_a, t_stack **stack_b);
+extern int move_count;
 
 #endif
