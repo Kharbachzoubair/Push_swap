@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:30:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/09 15:23:30 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:27:36 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int determine_chunk_size(int size)
 {
     if (size <= 100)
-        return 17;
+        return 20;
     else
-        return 30;
+        return 51;
 }
 void range_sort(t_stack **stack_a, t_stack **stack_b)
 {
