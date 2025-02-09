@@ -29,9 +29,8 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
 
     while (total_pushed < size) // Ensure all elements are pushed
     {
-        int rotated = 0;
-        int found = 0;
         int current_size = stack_size(*stack_a); // Update size dynamically
+        int found = 0;
 
         for (int i = 0; i < current_size; i++)
         {
@@ -49,7 +48,6 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
             else
             {
                 ra(stack_a);
-                rotated++;
             }
         }
 
@@ -60,6 +58,7 @@ void range_sort(t_stack **stack_a, t_stack **stack_b)
         end_range += chunk_size;
     }
 }
+
 
 
 
