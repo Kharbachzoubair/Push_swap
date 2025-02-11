@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:53:45 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/09 12:15:00 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:14:11 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,29 @@ char *join_arg(int argc, char **argv)
     }
     join_d[k] = '\0';  // Null-terminate the string
     return join_d;
+}
+int get_largest_index(t_stack *stack)
+{
+    int largest_index = stack->index;
+    t_stack *temp = stack;
+    
+    while (temp != NULL)
+    {
+        if (temp->index > largest_index)
+            largest_index = temp->index;
+        temp = temp->next;
+    }
+    return largest_index;
+}
+int get_index_position(t_stack *stack, int index)
+{
+    int position = 0;
+    while (stack != NULL)
+    {
+        if (stack->index == index)
+            return position;
+        stack = stack->next;
+        position++;
+    }
+    return -1; // In case the index is not found
 }

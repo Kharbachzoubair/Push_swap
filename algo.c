@@ -6,133 +6,85 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:30:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/11 16:31:32 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:15:11 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-int determine_chunk_size(int size)
+#include "push_swap.h"  // Assuming these functions are defined in libft.h
+
+// Function to determine the range based on the stack length
+int rangeof(int len)
 {
-    if (size <= 100)
-        return 20;
-    else if (size <= 500)
-        return 47; // Smaller chunk size for better move distribution
-    return 50; // Default chunk size for larger stacks
+    if (len < 20)
+        return 3;  // Small stacks use a small range
+    return (len / 20 + 10);  // Larger stacks use a larger range
 }
 
-
-int find_closest_in_range(t_stack *stack, int start_range, int end_range)
+// Main sorting algorithm to push elements to stack_b in ranges
+void range_algo(t_stack **stack_a, t_stack **stack_b)
 {
-    int top_moves = 0;
-    int bottom_moves = 0;
-    int size = stack_size(stack);
-    t_stack *current = stack;
+    int i = 0;
+    int range;
+    int index;
 
-    while (current)
+    if (*stack_a == NULL || *stack_b == NULL)
+        return;
+
+    range = rangeof(stack_size(*stack_a));  // Get the dynamic range based on stack size
+    while (*stack_a != NULL)
     {
-        if (current->index >= start_range && current->index <= end_range)
-            break;
-        current = current->next;
-        top_moves++;
-    }
-
-    bottom_moves = size - top_moves;
-    return (top_moves <= bottom_moves) ? 1 : -1;
-}
-
-int find_max_index_position(t_stack *stack)
-{
-    int pos = 0;
-    int max_pos = 0;
-    int max_value = stack->index;
-    t_stack *current = stack;
-
-    while (current)
-    {
-        if (current->index > max_value)
+        index = (*stack_a)->index;
+        if (index < i)  // If index is smaller than i, push to stack_b
         {
-            max_value = current->index;
-            max_pos = pos;
-        }
-        current = current->next;
-        pos++;
-    }
-    return max_pos;
-}
-
-void range_sort(t_stack **stack_a, t_stack **stack_b)
-{
-    int size = stack_size(*stack_a);
-    int chunk_size = determine_chunk_size(size);
-    int start_range = 0;
-    int end_range = chunk_size - 1;
-    int total_pushed = 0;
-
-    // Instead of blindly iterating, let's try smaller ranges
-    while (total_pushed < size)
-    {
-        int i = 0;
-        int current_size = stack_size(*stack_a);
-        int found = 0;
-
-        while (i < current_size)
-        {
-            int direction = find_closest_in_range(*stack_a, start_range, end_range);
-
-            if ((*stack_a)->index >= start_range && (*stack_a)->index <= end_range)
-            {
-                pb(stack_a, stack_b);
-                total_pushed++;
-
-                // Add some extra checks to minimize unnecessary rotations
-                if (*stack_b && (*stack_b)->index > start_range + (chunk_size / 2))
-                    rb(stack_b);
-                found = 1;
-            }
-            else
-            {
-                // Rotate only if the element is not in range
-                if (direction == 1)
-                    ra(stack_a);
-                else
-                    rra(stack_a);
-            }
+            pa(stack_a, stack_b);  // Call pa function
+            rb(stack_b);  // Call rb function
             i++;
         }
-
-        // If no elements were found in the current range, break out early
-        if (!found)
-            break;
-
-        // Increase the range to sort the next chunk
-        start_range += chunk_size;
-        end_range += chunk_size;
+        else if (index >= i && index < range + i)  // If within the range, push to stack_b
+        {
+            pa(stack_a, stack_b);  // Call pa function
+            i++;
+        }
+        else  // Otherwise, rotate stack_a
+            ra(stack_a);  // Call ra function
     }
-
-    // Optimize sorting of stack B
-    sort_stack_b(stack_a, stack_b);
 }
 
-void sort_stack_b(t_stack **stack_a, t_stack **stack_b)
+// Function to move the largest element from stack_b to stack_a
+void move_largest_to_a(t_stack **stack_a, t_stack **stack_b)
 {
-    while (*stack_b)
+    int size_stack;
+    int largest_index;
+    int largest_index_pos;
+
+    while (*stack_b != NULL)
     {
-        int size = stack_size(*stack_b);
-        int max_pos = find_max_index_position(*stack_b);
+        size_stack = stack_size(*stack_b);
+        largest_index = get_largest_index(*stack_b);
+        largest_index_pos = get_index_position(*stack_b, largest_index);
 
-        // Move elements to stack A with minimal rotations
-        if (max_pos > size / 2)
+        if (largest_index_pos <= size_stack / 2)  // If the largest element is in the top half of stack_b
         {
-            while (max_pos++ < size)
-                rrb(stack_b);
+            while ((*stack_b)->index != largest_index)
+                rb(stack_b);  // Call rb function
         }
-        else
+        else  // Otherwise, reverse rotate stack_b
         {
-            while (max_pos-- > 0)
-                rb(stack_b);
+            while ((*stack_b)->index != largest_index)
+                rrb(stack_b);  // Call rrb function
         }
-
-        // Push back to stack A
-        pa(stack_a, stack_b);
+        pa(stack_a, stack_b);  // Push the largest element to stack_a
     }
+}
+
+// Check if the stack is sorted in ascending order
+int is_sorted(t_stack *stack)
+{
+    while (stack->next)
+    {
+        if (stack->value > stack->next->value)  // If an element is greater than the next one, stack is not sorted
+            return 0;
+        stack = stack->next;
+    }
+    return 1;  // Stack is sorted
 }

@@ -52,9 +52,6 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    printf("\nStack A before sorting:\n");
-    print_stack(stack_a);
-
    
 
     // Step 2: Get size and determine sorting method
@@ -69,8 +66,8 @@ int main(int argc, char **argv)
     else if (size == 5)
         sort5(&stack_a, &stack_b);
     else if (size > 5)
-        range_sort(&stack_a, &stack_b);
-    sort_stack_b(&stack_a, &stack_b); 
+        range_algo(&stack_a, &stack_b);
+   
 
     printf("\nStack A after sorting:\n");
     print_stack(stack_a);
