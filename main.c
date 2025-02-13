@@ -66,7 +66,7 @@ int main(int argc, char **argv)
     else if (size == 5)
         sort5(&stack_a, &stack_b);
     else if (size > 5)
-        range_algo(&stack_a, &stack_b);
+        larger_sort(&stack_a, &stack_b);
    
 
     printf("\nStack A after sorting:\n");

@@ -84,5 +84,7 @@ int is_sorted(t_stack *stack);
 void move_largest_to_a(t_stack **stack_a, t_stack **stack_b);
 void range_algo(t_stack **stack_a, t_stack **stack_b);
 extern int move_count;
-
+void larger_sort(t_stack **stack_a, t_stack **stack_b);
+int find_max_index(t_stack *stack);
+int find_max_index_position(t_stack *stack);
 #endif
