@@ -2,7 +2,7 @@
   "configurations": [
     {
       "name": "macos-gcc-x64",
-      "compilerPath": "/usr/bin/gcc",
+      "compilerPath": "C:/MinGW/bin/gcc.exe",
       "cStandard": "${default}",
       "cppStandard": "${default}",
       "intelliSenseMode": "macos-gcc-x64",
