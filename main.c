@@ -67,13 +67,16 @@ int main(int argc, char **argv)
         sort5(&stack_a, &stack_b);
     else if (size > 5)
         larger_sort(&stack_a, &stack_b);
+    
    
 
-    printf("\nStack A after sorting:\n");
+   
+
+    printf("Stack A after sorting:");
     print_stack(stack_a);
     
     free_stack(stack_a);
-    printf("Total moves: %d\n", move_count);
+    printf("Total moves: %d", move_count);
     
     return 0;
 }
