@@ -56,9 +56,10 @@ int main(int argc, char **argv)
 
     // Step 2: Get size and determine sorting method
     int size = stack_size(stack_a);
-
-    if (size == 2)
-        sa(&stack_a);
+    if(size !=0 || !(is_sorted(stack_a)))
+    {
+        if (size == 2)
+        sort_2(&stack_a);
     else if (size == 3)
         sort3(&stack_a);
     else if (size == 4)
@@ -67,6 +68,7 @@ int main(int argc, char **argv)
         sort5(&stack_a, &stack_b);
     else if (size > 5)
         larger_sort(&stack_a, &stack_b);
+    }
     
    
 
