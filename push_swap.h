@@ -65,6 +65,7 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 /* Sorting functions */
 int get_index_position(t_stack *stack, int index);
 int get_largest_index(t_stack *stack);
+void sort_2(t_stack **stack);
 void    sort3(t_stack **stack);
 void    sort_small_stack(t_stack **stack);
 int     stack_size(t_stack *stack);
