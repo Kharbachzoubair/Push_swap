@@ -70,15 +70,13 @@ int main(int argc, char **argv)
         larger_sort(&stack_a, &stack_b);
     }
     
-   
 
-   
 
-    printf("Stack A after sorting:");
-    print_stack(stack_a);
+    // printf("Stack A after sorting:");
+    // print_stack(stack_a);
     
     free_stack(stack_a);
-    printf("Total moves: %d", move_count);
+    // printf("Total moves: %d", move_count);
     
     return 0;
 }

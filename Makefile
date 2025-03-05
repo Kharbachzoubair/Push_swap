@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = main.c ft_split.c validation.c utils.c stack.c operations.c sorting.c algo.c
 OBJ = $(SRC:.c=.o)
