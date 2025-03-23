@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:21:33 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/07 17:30:23 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:50:33 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 static void	ft_putnbr(int n)
 {
-	char		c;
+	char	c;
+
 	if (n < 0)
 	{
 		write(1, "-", 1);

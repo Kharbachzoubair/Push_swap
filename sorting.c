@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:15:32 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/07 17:33:56 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 23:48:28 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	move_to_top(t_stack **stack, int value)
 	while (temp)
 	{
 		if (temp->value == value)
-			break;
+			break ;
 		count++;
 		temp = temp->next;
 	}

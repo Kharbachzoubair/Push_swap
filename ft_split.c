@@ -6,59 +6,64 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 12:41:40 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/09 12:16:31 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:23:41 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-char **ft_split(char *s)
+#include "push_swap.h"
+
+char	**ft_split(char *s)
 {
-    int i = 0, k = 0, j, words = count_words(s);
-    char **result = malloc((words + 1) * sizeof(char *));
-    if (!result)
-        return NULL;
+	int		i;
+	int		k;
+	int		j;
+	int		m;
+	int		words;
+	char	**result;
 
-    while (s[i])
-    {
-        // Skip leading spaces
-        while (s[i] == ' ')
-            i++;
-        
-        if (!s[i])  // End of string
-            break;
-
-        // Find the end of the next word
-        j = i;
-        while (s[j] && s[j] != ' ')
-            j++;
-
-        // Allocate memory for the current word
-        result[k] = malloc((j - i + 1) * sizeof(char));
-        if (!result[k])  // Free already allocated memory if malloc fails
-        {
-            while (k--)
-                free(result[k]);
-            free(result);
-            return NULL;
-        }
-
-        // Copy the word
-        int m = 0;
-        while (i < j)
-            result[k][m++] = s[i++];
-        result[k][m] = '\0';  // Null-terminate the word
-        k++;
-    }
-    result[k] = NULL;  // Null-terminate the array of strings
-    return result;
+	i = 0;
+	k = 0;
+	words = count_words(s);
+	result = malloc((words + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		if (!s[i])
+			break ;
+		j = i;
+		while (s[j] && s[j] != ' ')
+			j++;
+		result[k] = malloc((j - i + 1) * sizeof(char));
+		if (!result[k])
+		{
+			while (k--)
+				free(result[k]);
+			free(result);
+			return (NULL);
+		}
+		m = 0;
+		while (i < j)
+			result[k][m++] = s[i++];
+		result[k][m] = '\0';
+		k++;
+	}
+	result[k] = NULL;
+	return (result);
 }
-void free_split(char **split)
+
+void	free_split(char **split)
 {
-    int i = 0;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
