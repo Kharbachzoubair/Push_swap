@@ -6,111 +6,138 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:21:33 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/09 15:10:40 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:30:23 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *create_node(int value)
+
+static void	ft_putnbr(int n)
 {
-    t_stack *node = malloc(sizeof(t_stack));
-    if (!node)
-        return NULL;
-    node->value = value;
-    node->index = -1;  // Initialize index
-    node->next = NULL;
-    return node;
+	char		c;
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	c = n % 10 + '0';
+	write(1, &c, 1);
 }
 
-t_stack *build_stack(char **numbers)
+t_stack	*create_node(int value)
 {
-    t_stack *head = NULL;
-    t_stack *tail = NULL;
-    int i = 0;
+	t_stack	*node;
 
-    while (numbers[i])
-    {
-        int num = ft_atoi(numbers[i]);
-        t_stack *new_node = create_node(num);
-
-        if (!new_node)
-        {
-            free_stack(head);
-            return NULL;
-        }
-
-        if (!head)
-            head = new_node;
-        else
-            tail->next = new_node;
-
-        tail = new_node;
-        i++;
-    }
-
-    index_stack(head);  // Assign indexes after building the stack
-    return head;
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->value = value;
+	node->index = -1;
+	node->next = NULL;
+	return (node);
 }
 
-void index_stack(t_stack *stack)
+t_stack	*build_stack(char **numbers)
 {
-    t_stack *current;
-    t_stack *smallest;
-    int index = 0;
-    int size = stack_size(stack);
+	t_stack	*head;
+	t_stack	*tail;
+	int		i;
+	int		num;
+	t_stack	*new_node;
 
-    while (index < size)
-    {
-        smallest = NULL;
-        current = stack;
-
-        while (current)
-        {
-            if (current->index == -1) // Only process unindexed numbers
-            {
-                if (!smallest || current->value < smallest->value)
-                    smallest = current;
-            }
-            current = current->next;
-        }
-
-        if (smallest)
-            smallest->index = index++; // Assign index
-    }
+	head = NULL;
+	tail = NULL;
+	i = 0;
+	while (numbers[i])
+	{
+		num = ft_atoi(numbers[i]);
+		new_node = create_node(num);
+		if (!new_node)
+		{
+			free_stack(head);
+			return (NULL);
+		}
+		if (!head)
+			head = new_node;
+		else
+			tail->next = new_node;
+		tail = new_node;
+		i++;
+	}
+	index_stack(head);
+	return (head);
 }
 
-void print_stack(t_stack *stack)
+void	index_stack(t_stack *stack)
 {
-    t_stack *current = stack;
-    while (current)
-    {
-        printf("Value: %d | Index: %d\n", current->value, current->index);
-        current = current->next;
-    }
+	t_stack	*current;
+	t_stack	*smallest;
+	int		index;
+	int		size;
+
+	index = 0;
+	size = stack_size(stack);
+	while (index < size)
+	{
+		smallest = NULL;
+		current = stack;
+		while (current)
+		{
+			if (current->index == -1)
+			{
+				if (!smallest || current->value < smallest->value)
+					smallest = current;
+			}
+			current = current->next;
+		}
+		if (smallest)
+			smallest->index = index++;
+	}
 }
 
-void free_stack(t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-    t_stack *tmp;
-    while (stack)
-    {
-        tmp = stack;
-        stack = stack->next;
-        free(tmp);
-    }
+	t_stack	*current;
+
+	current = stack;
+	while (current)
+	{
+		ft_putnbr(current->value);
+		write(1, " | ", 3);
+		ft_putnbr(current->index);
+		write(1, "\n", 1);
+		current = current->next;
+	}
 }
 
-int stack_size(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-    int count = 0;
-    while (stack)
-    {
-        stack = stack->next;
-        count++;
-    }
-    return count;
+	t_stack	*tmp;
+
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
 }
+
+int	stack_size(t_stack *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		count++;
+	}
+	return (count);
+}
+
 int	is_sorted(t_stack *stack)
 {
 	while (stack->next)

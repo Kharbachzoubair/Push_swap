@@ -6,34 +6,43 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:53:45 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/02/11 17:14:11 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:42:18 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int ft_strlen(char *s)
+
+int	ft_strlen(char *s)
 {
-    int i = 0;
-    while (s[i])
-        i++;
-    return i;
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-int count_words(char *s)
+int	count_words(char *s)
 {
-    int i = 0, word = 0, count = 0;
-    while (s[i])
-    {
-        if (s[i] == ' ')
-            word = 0;
-        else if (word == 0)
-        {
-            count++;
-            word = 1;
-        }
-        i++;
-    }
-    return count;
+	int	i;
+	int	word;
+	int	count;
+
+	i = 0;
+	word = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			word = 0;
+		else if (word == 0)
+		{
+			count++;
+			word = 1;
+		}
+		i++;
+	}
+	return (count);
 }
 
 int	ft_atoi(char *str)
@@ -64,64 +73,69 @@ int	ft_atoi(char *str)
 	}
 	return (result * sign);
 }
-char *join_arg(int argc, char **argv)
+
+char	*join_arg(int argc, char **argv)
 {
-    int i = 1, len = 0, k = 0;
-    char *join_d;
-    int j;
-    // Calculate the total length, including spaces between words
-    while (i < argc)
-    {
-        len += ft_strlen(argv[i]);
-        i++;
-        if (i < argc) // Add space for each space between arguments
-            len++;
-    }
+	int		i;
+	int		len;
+	int		k;
+	char	*join_d;
+	int		j;
 
-    // Allocate memory for the combined string (including null terminator)
-    join_d = malloc(len + 1);
-    if (!join_d)
-        return NULL;
-
-    i = 1;
-    while (i < argc)
-    {
-        // Copy each argument to the joined string
-        j = 0;
-        while (argv[i][j])
-            join_d[k++] = argv[i][j++];
-
-        // Add space between arguments, but not after the last one
-        if (i < argc - 1)
-            join_d[k++] = ' ';
-        
-        i++;
-    }
-    join_d[k] = '\0';  // Null-terminate the string
-    return join_d;
+	i = 1;
+	len = 0;
+	k = 0;
+	while (i < argc)
+	{
+		len += ft_strlen(argv[i]);
+		i++;
+		if (i < argc)
+			len++;
+	}
+	join_d = malloc(len + 1);
+	if (!join_d)
+		return (NULL);
+	i = 1;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+			join_d[k++] = argv[i][j++];
+		if (i < argc - 1)
+			join_d[k++] = ' ';
+		i++;
+	}
+	join_d[k] = '\0';
+	return (join_d);
 }
-int get_largest_index(t_stack *stack)
+
+int	get_largest_index(t_stack *stack)
 {
-    int largest_index = stack->index;
-    t_stack *temp = stack;
-    
-    while (temp != NULL)
-    {
-        if (temp->index > largest_index)
-            largest_index = temp->index;
-        temp = temp->next;
-    }
-    return largest_index;
+	int		largest_index;
+	t_stack	*temp;
+
+	largest_index = stack->index;
+	temp = stack;
+	while (temp != NULL)
+	{
+		if (temp->index > largest_index)
+			largest_index = temp->index;
+		temp = temp->next;
+	}
+	return (largest_index);
 }
-int get_index_position(t_stack *stack, int index)
+
+int	get_index_position(t_stack *stack, int index)
 {
-    int position = 0;
-    while (stack != NULL)
-    {
-        if (stack->index == index)
-            return position;
-        stack = stack->next;
-        position++;
-    }
-    return -1; // In case the index is not found
+	int	position;
+
+	position = 0;
+	while (stack != NULL)
+	{
+		if (stack->index == index)
+			return (position);
+		stack = stack->next;
+		position++;
+	}
+	return (-1);
 }
