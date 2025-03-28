@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:41:58 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/27 14:42:04 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:22:45 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,27 @@ void	assign_index_to_smallest(t_stack *stack, int *index)
 	}
 	if (smallest)
 		smallest->index = (*index)++;
+}
+
+int	count_words(char *s)
+{
+	int	i;
+	int	word;
+	int	count;
+
+	i = 0;
+	word = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			word = 0;
+		else if (word == 0)
+		{
+			count++;
+			word = 1;
+		}
+		i++;
+	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:41:55 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/27 18:00:00 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:32:37 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		validate_numbers(char **numbers);
 char	**ft_split(char *s);
 void	free_split(char **split);
 int		ft_atoi(char *str);
+int		ft_atoi2(char *str, int *error);
 int		is_valid_number(char *str);
 int		is_within_int_range(char *str);
 int		has_duplicates(char **numbers);

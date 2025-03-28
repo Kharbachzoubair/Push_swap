@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:04:42 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/23 21:52:58 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:22:33 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	is_within_int_range(char *str)
 {
-	long	num;
+	int	num;
+	int	error;
 
-	num = ft_atoi(str);
-	if (num < INT_MIN || num > INT_MAX)
+	error = 0;
+	num = ft_atoi2(str, &error);
+	if (num == -1 || error)
 		return (0);
 	return (1);
 }
@@ -73,16 +75,10 @@ int	validate_numbers(char **numbers)
 	while (numbers[i])
 	{
 		if (!ifnumber(numbers[i]) || !is_within_int_range(numbers[i]))
-		{
-			write(2, "Error\n", 6);
 			return (0);
-		}
 		i++;
 	}
 	if (has_duplicates(numbers))
-	{
-		write(2, "Error\n", 6);
 		return (0);
-	}
 	return (1);
 }

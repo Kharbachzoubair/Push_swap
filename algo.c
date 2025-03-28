@@ -6,9 +6,11 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:30:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/27 13:29:48 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:30:24 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 #include "push_swap.h"
 
@@ -17,19 +19,21 @@ void	range_algo(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 	int	range;
 	int	index;
+	int	size;
 
 	i = 0;
 	range = rangeof(stack_size(*stack_a));
+	size = stack_size(*stack_a);
 	while (*stack_a)
 	{
 		index = (*stack_a)->index;
-		if (index < i)
+		if (index <= i)
 		{
 			pb(stack_a, stack_b);
 			rb(stack_b);
 			i++;
 		}
-		else if (index >= i && index < range + i)
+		else if (index <= i + range)
 		{
 			pb(stack_a, stack_b);
 			i++;

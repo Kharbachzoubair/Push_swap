@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 03:21:27 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/28 03:21:27 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/28 21:16:34 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,25 @@ static void	sort_stack(t_stack **stack_a, t_stack **stack_b, int size)
 		larger_sort(stack_a, stack_b);
 }
 
+static void	handle_error(void)
+{
+	write(2, "Error\n", 6);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		size;
 
-	if (argc < 2)
-		return (write(2, "Error\n", 6), 1);
+	if (argc == 1)
+		return (0);
 	stack_a = initialize_stack(argc, argv);
 	if (!stack_a)
-		return (write(2, "Error\n", 6), 1);
+	{
+		handle_error();
+		return (1);
+	}
 	stack_b = NULL;
 	size = stack_size(stack_a);
 	if (size > 1 && !is_sorted(stack_a))

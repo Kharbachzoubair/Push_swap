@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:15:32 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/27 14:00:37 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:09:29 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	move_to_top(t_stack **stack, int value)
 	if (count <= stack_size(*stack) / 2)
 	{
 		while ((*stack)->value != value)
-			rotate(stack);
+			ra(stack);
 	}
 	else
 	{
 		while ((*stack)->value != value)
-			reverse_rotate(stack);
+			rra(stack);
 	}
 }

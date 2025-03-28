@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:14:00 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/27 16:09:27 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:31:03 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_stack	*build_stack(char **numbers)
 	return (head);
 }
 
-// Helper function to convert a string to an integer and create a node
 t_stack	*create_node_from_string(char *str)
 {
 	int		num;
@@ -63,7 +62,6 @@ t_stack	*create_node_from_string(char *str)
 	return (create_node(num));
 }
 
-// Function to print the stack
 void	print_stack(t_stack *stack)
 {
 	t_stack	*current;
@@ -79,7 +77,6 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-// Function to free the entire stack
 void	free_stack(t_stack *stack)
 {
 	t_stack	*tmp;
