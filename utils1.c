@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
 	char	c;
 
@@ -27,7 +27,7 @@ static void	ft_putnbr(int n)
 	write(1, &c, 1);
 }
 
-static void	assign_index_to_smallest(t_stack *stack, int *index)
+void	assign_index_to_smallest(t_stack *stack, int *index)
 {
 	t_stack	*current;
 	t_stack	*smallest;

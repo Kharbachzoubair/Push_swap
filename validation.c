@@ -11,29 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "push_swap.h"
-
-int	validate_numbers(char **numbers)
-{
-	int	i;
-
-	i = 0;
-	while (numbers[i])
-	{
-		if (!ifnumber(numbers[i]) || !is_within_int_range(numbers[i]))
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		i++;
-	}
-	if (has_duplicates(numbers))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	return (1);
-}
 
 int	is_within_int_range(char *str)
 {
@@ -86,4 +63,26 @@ int	has_duplicates(char **numbers)
 		i++;
 	}
 	return (0);
+}
+
+int	validate_numbers(char **numbers)
+{
+	int	i;
+
+	i = 0;
+	while (numbers[i])
+	{
+		if (!ifnumber(numbers[i]) || !is_within_int_range(numbers[i]))
+		{
+			write(2, "Error\n", 6);
+			return (0);
+		}
+		i++;
+	}
+	if (has_duplicates(numbers))
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	return (1);
 }

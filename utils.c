@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "push_swap.h"
 
 int	ft_strlen(char *s)
 {
@@ -46,6 +45,20 @@ int	count_words(char *s)
 	return (count);
 }
 
+int	ft_atoi_helper(char *str, int i, int sign, unsigned long long result)
+{
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		if (result > 9223372036854775807 && sign == 1)
+			return (-1);
+		if (result > 9223372036854775807 && sign == -1)
+			return (0);
+		i++;
+	}
+	return (result * sign);
+}
+
 int	ft_atoi(char *str)
 {
 	int					i;
@@ -66,50 +79,30 @@ int	ft_atoi(char *str)
 	return (ft_atoi_helper(str, i, sign, result));
 }
 
-int	ft_atoi_helper(char *str, int i, int sign, unsigned long long result)
-{
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		if (result > 9223372036854775807 && sign == 1)
-			return (-1);
-		if (result > 9223372036854775807 && sign == -1)
-			return (0);
-		i++;
-	}
-	return (result * sign);
-}
-
 char	*join_arg(int argc, char **argv)
 {
 	int		i;
 	int		len;
-	int		k;
 	char	*join_d;
+	int		k;
 	int		j;
 
-	i = 1;
 	len = 0;
-	k = 0;
+	i = 1;
 	while (i < argc)
-	{
-		len += ft_strlen(argv[i]);
-		i++;
-		if (i < argc)
-			len++;
-	}
+		len += ft_strlen(argv[i++]) + (i < argc);
 	join_d = malloc(len + 1);
 	if (!join_d)
 		return (NULL);
 	i = 1;
+	k = 0;
 	while (i < argc)
 	{
 		j = 0;
 		while (argv[i][j])
 			join_d[k++] = argv[i][j++];
-		if (i < argc - 1)
+		if (i++ < argc - 1)
 			join_d[k++] = ' ';
-		i++;
 	}
 	join_d[k] = '\0';
 	return (join_d);

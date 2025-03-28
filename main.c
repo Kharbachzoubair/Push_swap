@@ -3,67 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoubair Kharbach <marvin@student.42.fr>     +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 12:58:15 by Zoubair           #+#    #+#             */
-/*   Updated: 2025/01/30 12:58:15 by Zoubair          ###   ########.fr       */
+/*   Created: 2025/03/28 03:21:27 by marvin            #+#    #+#             */
+/*   Updated: 2025/03/28 03:21:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int	main(int argc, char **argv)
-{
-	char		*joined;
-	char		**numbers;
-	t_stack		*stack_a;
-	t_stack		*stack_b;
-	int			size;
 
-	if (argc < 2)
-	{
-		printf("Error: No input provided\n");
-		return (1);
-	}
+static t_stack	*initialize_stack(int argc, char **argv)
+{
+	char	*joined;
+	char	**numbers;
+	t_stack	*stack;
+
 	joined = join_arg(argc, argv);
 	if (!joined)
-	{
-		printf("Memory allocation failed\n");
-		return (1);
-	}
+		return (NULL);
 	numbers = ft_split(joined);
 	free(joined);
-	if (!numbers)
-	{
-		printf("Memory allocation failed\n");
-		return (1);
-	}
-	if (!validate_numbers(numbers))
+	if (!numbers || !validate_numbers(numbers))
 	{
 		free_split(numbers);
-		return (1);
+		return (NULL);
 	}
-	stack_a = build_stack(numbers);
-	stack_b = NULL;
+	stack = build_stack(numbers);
 	free_split(numbers);
+	return (stack);
+}
+
+static void	sort_stack(t_stack **stack_a, t_stack **stack_b, int size)
+{
+	if (size == 2)
+		sort_2(stack_a);
+	else if (size == 3)
+		sort3(stack_a);
+	else if (size == 4)
+		sort4(stack_a, stack_b);
+	else if (size == 5)
+		sort5(stack_a, stack_b);
+	else if (size > 5)
+		larger_sort(stack_a, stack_b);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		size;
+
+	if (argc < 2)
+		return (write(2, "Error\n", 6), 1);
+	stack_a = initialize_stack(argc, argv);
 	if (!stack_a)
-	{
-		printf("Error building stack\n");
-		return (1);
-	}
+		return (write(2, "Error\n", 6), 1);
+	stack_b = NULL;
 	size = stack_size(stack_a);
-	if (size != 0 || !(is_sorted(stack_a)))
-	{
-		if (size == 2)
-			sort_2(&stack_a);
-		else if (size == 3)
-			sort3(&stack_a);
-		else if (size == 4)
-			sort4(&stack_a, &stack_b);
-		else if (size == 5)
-			sort5(&stack_a, &stack_b);
-		else if (size > 5)
-			larger_sort(&stack_a, &stack_b);
-	}
+	if (size > 1 && !is_sorted(stack_a))
+		sort_stack(&stack_a, &stack_b, size);
 	free_stack(stack_a);
 	return (0);
 }

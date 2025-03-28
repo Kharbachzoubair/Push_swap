@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	if (split)
+	{
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
+	}
+}
+
 static char	*allocate_word(char *s, int start, int end)
 {
 	char	*word;
