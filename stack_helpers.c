@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	while (stack)
-	{
-		tmp = stack;
-		stack = stack->next;
-		free(tmp);
-	}
-}
-
 int	stack_size(t_stack *stack)
 {
 	int	count;
