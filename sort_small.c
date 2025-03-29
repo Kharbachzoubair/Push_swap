@@ -47,7 +47,7 @@ void	sort3(t_stack **stack)
 		sa(stack);
 }
 
-void	sort4(t_stack **stack_a, __unused t_stack **stack_b)
+void	sort4(t_stack **stack_a,  t_stack **stack_b)
 {
 	int	min_val;
 

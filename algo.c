@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
 void	range_algo(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
@@ -22,8 +20,8 @@ void	range_algo(t_stack **stack_a, t_stack **stack_b)
 	int	size;
 
 	i = 0;
-	range = rangeof(stack_size(*stack_a));
 	size = stack_size(*stack_a);
+	range = rangeof(size); // Now using `size` properly
 	while (*stack_a)
 	{
 		index = (*stack_a)->index;
