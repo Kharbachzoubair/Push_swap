@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:15:32 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/28 23:31:51 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:27:06 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort3(t_stack **stack)
 		sa(stack);
 }
 
-void	sort4(t_stack **stack_a,  t_stack **stack_b)
+void	sort4(t_stack **stack_a, t_stack **stack_b)
 {
 	int	min_val;
 

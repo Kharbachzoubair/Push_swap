@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:04:42 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/28 20:22:33 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:08:38 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_within_int_range(char *str)
 
 	error = 0;
 	num = ft_atoi2(str, &error);
-	if (num == -1 || error)
+	if (error)
 		return (0);
 	return (1);
 }

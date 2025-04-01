@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 03:21:27 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/28 21:16:34 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:37:42 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,27 @@ static t_stack	*initialize_stack(int argc, char **argv)
 	return (stack);
 }
 
+static void	handle_error(void)
+{
+	write(2, "Error\n", 6);
+}
+
+static int	check_args(int argc, char **argv)
+{
+	int	i;
+
+	if (argc == 1)
+		return (1);
+	i = 1;
+	while (i < argc)
+	{
+		if (is_empty_or_spaces(argv[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static void	sort_stack(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	if (size == 2)
@@ -43,13 +64,8 @@ static void	sort_stack(t_stack **stack_a, t_stack **stack_b, int size)
 		sort4(stack_a, stack_b);
 	else if (size == 5)
 		sort5(stack_a, stack_b);
-	else if (size > 5)
+	else
 		larger_sort(stack_a, stack_b);
-}
-
-static void	handle_error(void)
-{
-	write(2, "Error\n", 6);
 }
 
 int	main(int argc, char **argv)
@@ -58,8 +74,11 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 	int		size;
 
-	if (argc == 1)
-		return (0);
+	if (!check_args(argc, argv))
+	{
+		handle_error();
+		return (1);
+	}
 	stack_a = initialize_stack(argc, argv);
 	if (!stack_a)
 	{

@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:30:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/28 23:30:24 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:34:29 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	range_algo(t_stack **stack_a, t_stack **stack_b)
 
 	i = 0;
 	size = stack_size(*stack_a);
-	range = rangeof(size); // Now using `size` properly
+	range = rangeof(size);
 	while (*stack_a)
 	{
 		index = (*stack_a)->index;
