@@ -1,4 +1,4 @@
-CC      = gcc
+CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 SRC     = algo.c find_min_max.c ft_split.c main.c max_index_utils.c move_to_top.c \
           push.c range_utils.c reverse_rotate.c sort_small.c stack_helpers.c \
