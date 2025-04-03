@@ -31,22 +31,32 @@ The following stack operations are implemented:
 - `ra`, `rb`, `rr` → Rotate stack (shift elements up).
 - `rra`, `rrb`, `rrr` → Reverse rotate stack (shift elements down).
 
-## File Structure
+## 📂 File Structure
 
-├── push_swap.h            # Header file with function prototypes
-├── main.c                 # Entry point of the program
-├── validation.c           # Input validation functions
-├── stack.c                # Stack management functions
-├── stack_utils.c          # Stack-related utilities
-├── sort_small.c           # Sorting algorithm for small inputs
-├── algo.c                 # Main sorting algorithm
-├── move_to_top.c          # Functions to move elements to the top
-├── find_min_max.c         # Find min/max values in the stack
-├── range_utils.c          # Utilities for range-based sorting
-├── rotate.c               # Rotate operations
-├── reverse_rotate.c       # Reverse rotate operations
-├── swap.c                 # Swap operations
-├── push.c                 # Push operations
-├── utils.c                # General utility functions
-├── Makefile               # Compilation instructions
+The project is organized into the following files:
 
+### 🏗 Core Files  
+- **`push_swap.h`** - Header file with function prototypes  
+- **`main.c`** - Entry point of the program  
+
+### ✅ Input & Validation  
+- **`validation.c`** - Handles input validation  
+
+### 📌 Stack Operations  
+- **`stack.c`** - Stack initialization and management  
+- **`stack_utils.c`** - Helper functions for stack manipulation  
+- **`swap.c`** - Swap operations (`sa`, `sb`, `ss`)  
+- **`push.c`** - Push operations (`pa`, `pb`)  
+- **`rotate.c`** - Rotate operations (`ra`, `rb`, `rr`)  
+- **`reverse_rotate.c`** - Reverse rotate operations (`rra`, `rrb`, `rrr`)  
+
+### 🔢 Sorting Algorithms  
+- **`sort_small.c`** - Sorting logic for small stacks  
+- **`algo.c`** - Main sorting algorithm  
+- **`move_to_top.c`** - Functions to move elements to the top efficiently  
+- **`find_min_max.c`** - Finds min/max values in the stack  
+- **`range_utils.c`** - Utilities for range-based sorting  
+
+### 🛠 Utilities & Compilation  
+- **`utils.c`** - General utility functions  
+- **`Makefile`** - Compilation instructions  
