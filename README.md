@@ -21,5 +21,15 @@ To run the program with a list of numbers:
 
 ```bash
 ./push_swap 4 67 3 87 23
+```
 
+## Stack Operations
+The following stack operations are implemented:
+
+- `sa`, `sb`, `ss` → Swap top two elements of the stack(s).
+- `pa`, `pb` → Push top element from one stack to another.
+- `ra`, `rb`, `rr` → Rotate stack (shift elements up).
+- `rra`, `rrb`, `rrr` → Reverse rotate stack (shift elements down).
+
+## File Structure
 
