@@ -69,3 +69,19 @@ The sorting strategy is optimized based on the number of elements:
 ### 🛠 Utilities & Compilation  
 - **`utils.c`** - General utility functions  
 - **`Makefile`** - Compilation instructions  
+
+## ✅ Norminette Compliance
+
+This project follows **42 School's Norminette coding style**.  
+To check for compliance, run:
+
+```bash
+norminette
+```
+
+## 👤 Author  
+**Kharbach Zoubair**  
+
+## 📜 License  
+This project is part of the **42 School curriculum** and is intended for **educational purposes**.  
+
