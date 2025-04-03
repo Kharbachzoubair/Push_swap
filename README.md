@@ -13,5 +13,13 @@ Push_swap is a project from 42 School that involves sorting a list of integers u
 To compile the project, run:
 ```bash
 make
+```
+This will generate the `push_swap` executable.
+
+## Running the Program
+To run the program with a list of numbers:
+
+```bash
+./push_swap 4 67 3 87 23
 
 
