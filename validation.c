@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:04:42 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/04/01 14:08:38 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:26:52 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,15 @@
 int	is_within_int_range(char *str)
 {
 	int	num;
-	int	error;
 
-	error = 0;
-	num = ft_atoi2(str, &error);
-	if (error)
-		return (0);
+	num = ft_atoi(str);
 	return (1);
 }
 
-int	ifnumber(char *s)
+int	is_number(char *s)
 {
-	int		i;
-	int		sign_count;
+	int	i;
+	int	sign_count;
 
 	i = 0;
 	sign_count = 0;
@@ -38,6 +34,8 @@ int	ifnumber(char *s)
 		sign_count++;
 		i++;
 	}
+	if (s[i] < '0' || s[i] > '9')
+		return (0);
 	while (s[i])
 	{
 		if (s[i] < '0' || s[i] > '9')
@@ -74,7 +72,12 @@ int	validate_numbers(char **numbers)
 	i = 0;
 	while (numbers[i])
 	{
-		if (!ifnumber(numbers[i]) || !is_within_int_range(numbers[i]))
+		while (numbers[i][0] == ' ' || numbers[i][0] == '\t'
+			|| numbers[i][0] == '\n')
+			numbers[i]++;
+		if (!numbers[i][0])
+			return (0);
+		if (!is_number(numbers[i]) || !is_within_int_range(numbers[i]))
 			return (0);
 		i++;
 	}

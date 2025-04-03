@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 03:21:27 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/01 14:37:42 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:03:30 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_stack	*initialize_stack(int argc, char **argv)
-{
-	char	*joined;
-	char	**numbers;
-	t_stack	*stack;
-
-	joined = join_arg(argc, argv);
-	if (!joined)
-		return (NULL);
-	numbers = ft_split(joined);
-	free(joined);
-	if (!numbers || !validate_numbers(numbers))
-	{
-		free_split(numbers);
-		return (NULL);
-	}
-	stack = build_stack(numbers);
-	free_split(numbers);
-	return (stack);
-}
-
 static void	handle_error(void)
 {
 	write(2, "Error\n", 6);
+}
+
+int	is_empty_or_spaces(char *str)
+{
+	int	i;
+
+	if (!str || str[0] == '\0')
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 static int	check_args(int argc, char **argv)

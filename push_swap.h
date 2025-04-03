@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:41:55 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/03/28 17:32:37 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:06:50 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -34,7 +33,6 @@ int		validate_numbers(char **numbers);
 char	**ft_split(char *s);
 void	free_split(char **split);
 int		ft_atoi(char *str);
-int		ft_atoi2(char *str, int *error);
 int		is_valid_number(char *str);
 int		is_within_int_range(char *str);
 int		has_duplicates(char **numbers);
@@ -66,20 +64,18 @@ void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* Sorting Algorithms */
-int		get_index_position(t_stack *stack, int index);
-int		get_largest_index(t_stack *stack);
 void	sort_2(t_stack **stack);
 void	sort3(t_stack **stack);
 void	sort4(t_stack **stack_a, t_stack **stack_b);
 void	sort5(t_stack **stack_a, t_stack **stack_b);
 void	sort_small_stack(t_stack **stack);
+t_stack	*initialize_stack(int argc, char **argv);
 void	push_swap(t_stack **stack);
 int		stack_size(t_stack *stack);
 int		find_min(t_stack *stack);
 int		find_max(t_stack *stack);
 void	move_to_top(t_stack **stack, int value);
 void	index_stack(t_stack *stack);
-void	sort_stack_b(t_stack **stack_a, t_stack **stack_b);
 int		is_sorted(t_stack *stack);
 void	move_largest_to_a(t_stack **stack_a, t_stack **stack_b);
 void	range_algo(t_stack **stack_a, t_stack **stack_b);

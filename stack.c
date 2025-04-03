@@ -24,3 +24,24 @@ void	index_stack(t_stack *stack)
 		assign_index_to_smallest(stack, &index);
 	}
 }
+
+t_stack	*initialize_stack(int argc, char **argv)
+{
+	char	*joined;
+	char	**numbers;
+	t_stack	*stack;
+
+	joined = join_arg(argc, argv);
+	if (!joined)
+		return (NULL);
+	numbers = ft_split(joined);
+	free(joined);
+	if (!numbers || !validate_numbers(numbers))
+	{
+		free_split(numbers);
+		return (NULL);
+	}
+	stack = build_stack(numbers);
+	free_split(numbers);
+	return (stack);
+}
