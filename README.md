@@ -1,4 +1,4 @@
-#🚀 Push_swap
+🚀 Push_swap
 
 ## 📌 Overview
 Push_swap is a project from 42 School that involves sorting a list of integers using two stacks and a limited set of operations. The goal is to implement an efficient sorting algorithm that minimizes the number of operations.
