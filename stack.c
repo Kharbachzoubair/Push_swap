@@ -15,7 +15,7 @@
 void	index_stack(t_stack *stack)
 {
 	int	index;
-	int	size;
+	int size;
 
 	index = 0;
 	size = stack_size(stack);
