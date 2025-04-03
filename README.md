@@ -1,13 +1,13 @@
-# Push_swap
+#🚀 Push_swap
 
-## Overview
+## 📌 Overview
 Push_swap is a project from 42 School that involves sorting a list of integers using two stacks and a limited set of operations. The goal is to implement an efficient sorting algorithm that minimizes the number of operations.
 
-## Features
-- Validates input and ensures correct formatting.
-- Implements stack operations for sorting.
-- Optimized sorting strategies for different input sizes.
-- Handles edge cases such as duplicates and invalid inputs.
+## ✨Features
+- ✅ Validates input and ensures correct formatting.
+- ✅ Implements stack operations for sorting.
+- ✅ Optimized sorting strategies for different input sizes.
+- ✅ Handles edge cases such as duplicates and invalid inputs.
 
 ## Compilation
 To compile the project, run:
@@ -16,20 +16,20 @@ make
 ```
 This will generate the `push_swap` executable.
 
-## Running the Program
+## ▶️ Running the Program
 To run the program with a list of numbers:
 
 ```bash
 ./push_swap 4 67 3 87 23
 ```
 
-## Stack Operations
+## 🔄 Stack Operations
 The following stack operations are implemented:
 
-- `sa`, `sb`, `ss` → Swap top two elements of the stack(s).
-- `pa`, `pb` → Push top element from one stack to another.
-- `ra`, `rb`, `rr` → Rotate stack (shift elements up).
-- `rra`, `rrb`, `rrr` → Reverse rotate stack (shift elements down).
+- 🔄 `sa`, `sb`, `ss` → Swap top two elements of the stack(s).
+- 📤`pa`, `pb` → Push top element from one stack to another.
+- 🔁`ra`, `rb`, `rr` → Rotate stack (shift elements up).
+- 🔄`rra`, `rrb`, `rrr` → Reverse rotate stack (shift elements down).
 
 ## 📂 File Structure
 
