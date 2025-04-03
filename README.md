@@ -50,6 +50,15 @@ The project is organized into the following files:
 - **`rotate.c`** - Rotate operations (`ra`, `rb`, `rr`)  
 - **`reverse_rotate.c`** - Reverse rotate operations (`rra`, `rrb`, `rrr`)  
 
+## 📊 Sorting Algorithm
+
+The sorting strategy is optimized based on the number of elements:
+
+- 🏆 **3 elements:** Uses a minimal set of swaps and rotations to achieve the correct order.
+- 🎯 **5 elements:** Implements a more efficient small-sort strategy to minimize operations.
+- 🚀 **More elements:** Uses a **range-based sorting algorithm**, pushing elements in sorted chunks to optimize the move count.
+
+
 ### 🔢 Sorting Algorithms  
 - **`sort_small.c`** - Sorting logic for small stacks  
 - **`algo.c`** - Main sorting algorithm  
